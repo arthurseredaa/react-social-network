@@ -1,0 +1,50 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 70vh;
+}
+.dialogsItems {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.dialogsItems a.active {
+    color: #00e676;
+    background-color: rgba(88, 96, 109, 0.6);
+}
+.dialogsItems a {
+    background-color: #363E47;
+    padding: 10px 20px;
+    height: 50px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    transition: .1s linear;
+    margin-right: 20px;
+}
+.dialogsItems a:hover {
+    background-color: #545c65;
+}
+.messages {
+    padding: 20px 0px 0px 50px;
+    background: rgba(88, 96, 109, 0.6);
+    overflow: auto;
+    position: relative;
+}
+.userCreateMessage {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.userCreateMessage textarea {
+    height: 30px;
+    width: 100%;
+    outline: none;
+    resize: none;
+}

@@ -1,0 +1,17 @@
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+.itemWrapper img {
+    border-radius: 50%;
+}
+.itemWrapper a {
+    text-decoration: none;
+    color: #fff;
+}
+.itemWrapper a:hover {
+    color: #00e676;
+}

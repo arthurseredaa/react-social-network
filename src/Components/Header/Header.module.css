@@ -1,0 +1,13 @@
+.header {
+  grid-area: header;
+  background-color: #222A33;
+}
+.header img {
+  width: 100px;
+}
+.header h1 {
+  margin: 0px 0px 0px 50px;
+}
+.header span {
+  color: #00E676;
+}

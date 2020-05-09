@@ -1,0 +1,13 @@
+.friendListWrapperSecond {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #00e676;
+    justify-content: space-around;
+    padding: 10px;
+    max-height: 300px;
+    overflow: auto;
+}
+.friendListWrapper {
+    padding-left: 20px;
+}

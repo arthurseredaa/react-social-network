@@ -1,0 +1,31 @@
+.nav {
+  grid-area: nav;
+  background-color: #222A33;
+  padding: 10px;
+  text-align: left;
+  height: 100vh;
+}
+.item {
+  margin-top: 10px;
+  padding: 5px;
+}
+.item:last-child {
+  margin-top: 50px;
+}
+.item a.active {
+  color: #00e676;
+}
+.item a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 15px;
+  letter-spacing: 1px;
+  transition: .1s linear;
+  font-weight: 400;
+  margin: auto 10px;
+  z-index: 2;
+}
+.item a:hover {
+  color: #fff;
+}
+

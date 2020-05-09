@@ -3,14 +3,14 @@
   background-color: #222A33;
   padding: 10px;
   text-align: left;
-  height: 100vh;
+  height: calc(100vh - 80px);
 }
 .item {
-  margin-top: 10px;
+  margin: 10px 0px;
   padding: 5px;
 }
 .item:last-child {
-  margin-top: 50px;
+  margin-top: 180%;
 }
 .item a.active {
   color: #00e676;

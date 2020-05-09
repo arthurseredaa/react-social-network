@@ -12,10 +12,9 @@ let store = {
                 {id: 2, name: "Andrey"},
                 {id: 3, name: "CJ"},
                 {id: 4, name: "Victor"},
-                {id: 5, name: "Valera"}
             ],
             messages: [
-                {id: 1, message: "Hello my dear friend! How's life? How it's going? I miss u so much, so we r must to meet in da club. Hell yaaaaa"}
+                {id: 1, message: "Hello my friend! How's life?"}
             ],
             newMessageText: "",
         },
@@ -48,7 +47,7 @@ let store = {
             likesCount: 0
         }
         this._state.profilePage.posts.push(newPost);
-        this.updateTextareaText('');
+        this._updateTextareaText('');
         this._callSubscriber(this._state);
     },
     _updateTextareaText(newText) {
@@ -62,7 +61,7 @@ let store = {
         }
         this._state.dialogsPage.messages.push(newMessage)
         this._callSubscriber(this._state);
-        this.updateMessage('');
+        this._updateMessage('');
     },
     _updateMessage(newText) {
         this._state.dialogsPage.newMessageText = newText;

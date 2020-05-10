@@ -24,6 +24,8 @@ let store = {
                 {id: 1, message: "Hello my friend! How's life?"},
                 {id: 1, message: "Hello my friend! How's life?"},
                 {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
             ],
             newMessageText: "",
         },

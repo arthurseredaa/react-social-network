@@ -29,10 +29,13 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
+                <h1 className={s.dialogsTitle}>Your dialogs:</h1>
                 {dialogItems}
             </div>
             <div className={s.messages}>
-                {messageItems}
+                <div className={s.messagesWrapper}>
+                    {messageItems}
+                </div>
                 <div className={s.userCreateMessage}>
                     <textarea ref={messageInputRef} onChange={onMessageChange}/>
                     <button onClick={addMessage}>Send</button>

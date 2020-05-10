@@ -14,7 +14,16 @@ let store = {
                 {id: 4, name: "Victor"},
             ],
             messages: [
-                {id: 1, message: "Hello my friend! How's life?"}
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
+                {id: 1, message: "Hello my friend! How's life?"},
             ],
             newMessageText: "",
         },
@@ -69,14 +78,21 @@ let store = {
     },
     //types: ADD-POST, UPDATE-NEW-POST-TEXT, ADD-MESSAGE, UPDATE-MESSAGE
     dispatch(action) {
-        if(action.type === "ADD-POST") {
-            this._addPost();
-        } else if(action.type === "UPDATE-NEW-POST-TEXT") {
-            this._updateTextareaText(action.newText);
-        } else if(action.type === "ADD-MESSAGE") {
-            this._addMessage();
-        } else if(action.type === "UPDATE-MESSAGE") {
-            this._updateMessage(action.newText);
+        switch(action.type) {
+            case "ADD-POST":
+                this._addPost();
+                break;
+            case "UPDATE-NEW-POST-TEXT":
+                this._updateTextareaText(action.newText);
+                break;
+            case "ADD-MESSAGE":
+                this._addMessage();
+                break;
+            case "UPDATE-MESSAGE":
+                this._updateMessage(action.newText);
+                break;
+            default:
+                console.log("Error in switch case{state.js}");
         }
     }
 };

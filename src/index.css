@@ -11,6 +11,7 @@ body  {
   /*background: #fff;*/
   outline: none;
   color: #000;
+  overflow: hidden;
 }
 
 code {

@@ -1,3 +1,6 @@
+import {profileReducer} from "./Redusers/profileReducer";
+import {dialogsReducer} from "./Redusers/dialogsReducer";
+
 let store = {
     _state: {
         profilePage: {
@@ -15,20 +18,10 @@ let store = {
             ],
             messages: [
                 {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
-                {id: 1, message: "Hello my friend! How's life?"},
             ],
             newMessageText: "",
         },
+        sidebar: {},
         friends: [
             {id: 1, name: "Arthur", avatarUrl: "https://pngimage.net/wp-content/uploads/2018/06/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B8-png-1.png"},
             {id: 2, name: "Hrustya", avatarUrl: "https://pngimage.net/wp-content/uploads/2018/06/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B8-png-1.png"},
@@ -43,14 +36,6 @@ let store = {
     _callSubscriber() {
         console.log("State changed");
     },
-
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
-    getState() {
-        return this._state;
-    },
-
     _addPost() {
         let newPost = {
             id: this._state.profilePage.posts.length + 1,
@@ -78,24 +63,20 @@ let store = {
         this._state.dialogsPage.newMessageText = newText;
         this._callSubscriber(this._state);
     },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+    getState() {
+        return this._state;
+    },
+
     //types: ADD-POST, UPDATE-NEW-POST-TEXT, ADD-MESSAGE, UPDATE-MESSAGE
     dispatch(action) {
-        switch(action.type) {
-            case "ADD-POST":
-                this._addPost();
-                break;
-            case "UPDATE-NEW-POST-TEXT":
-                this._updateTextareaText(action.newText);
-                break;
-            case "ADD-MESSAGE":
-                this._addMessage();
-                break;
-            case "UPDATE-MESSAGE":
-                this._updateMessage(action.newText);
-                break;
-            default:
-                console.log("Error in switch case{state.js}");
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+        this._callSubscriber(this._state);
     }
 };
 

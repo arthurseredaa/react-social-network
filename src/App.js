@@ -9,7 +9,7 @@ import {Newsfeed} from "./Components/Newsfeed/Newsfeed";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 
-//TODO: розприділити через store пропсами всьо на свої місця
+
 
 const App = (props) => {
     return (

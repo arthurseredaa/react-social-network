@@ -1,12 +1,27 @@
+import {nanoid} from 'nanoid';
+
 const ADD_MESSAGE = "ADD-MESSAGE",
     UPDATE_MESSAGE = "UPDATE-MESSAGE";
 
+let initialState ={
+    dialogs: [
+        {id: 1, name: "Arthur"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "CJ"},
+        {id: 4, name: "Victor"},
+    ],
+    messages: [
+        {id: 1, message: "Hello my friend! How's life?"},
+    ],
+    newMessageText: "",
+};
+
 //state = state.dialogsPage
-const dialogsReducer = (state, action) => {
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage = {
-                id: state.messages.length + 1,
+                id: nanoid(10),
                 message: state.newMessageText
             }
             state.messages.push(newMessage)
@@ -16,13 +31,13 @@ const dialogsReducer = (state, action) => {
             state.newMessageText = action.newText;
             break;
         default:
-            console.log('Error in switch/case{dialogsReducer}')
+            return state;
     }
     return state;
 }
 
 const addMessageActionCreator = () => ({type: ADD_MESSAGE}),
-    updateMessageActionCreator = (text) => ({type: UPDATE_MESSAGE, newText: text});
+    updateMessageActionCreator = (text) => ({type: UPDATE_MESSAGE, newText: text, id: nanoid(10)});
 
 export {
     dialogsReducer,

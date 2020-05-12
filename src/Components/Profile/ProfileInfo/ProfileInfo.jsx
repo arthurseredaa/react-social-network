@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import {FriendList} from './FriendList/FriendList';
 
 const ProfileInfo = (props) => {
+    debugger;
   return(
     <div className={s.profileInfoWrapper}>
       <img className={s.headImage} src="https://www.w3schools.com/howto/img_snow_wide.jpg"/>

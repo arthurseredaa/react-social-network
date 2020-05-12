@@ -5,21 +5,19 @@ import {MessageItem} from "./Messageitem/MessageItem";
 import {addMessageActionCreator, updateMessageActionCreator} from "../../Redux/Reducers/dialogsReducer";
 
 const Dialogs = (props) => {
-    let dialogItems = props.dialogsPage.dialogsPage.dialogs
-            .map(d => <DialogItem id = {d.id} name={d.name} active={s.active}/>),
-        messageItems = props.dialogsPage.dialogsPage.messages
-            .map(m => <MessageItem message={m.message}/>);
+    let dialogItems = props.dialogs.map(d => <DialogItem id = {d.id} name={d.name} active={s.active}/>),
+        messageItems = props.messages.map(m => <MessageItem message={m.message}/>);
 
     let messageInputRef = React.createRef();
 
     const onMessageChange = () => {
         let text = messageInputRef.current.value;
-        props.dispatch(updateMessageActionCreator(text));
+        props.messageInputChange(text);
     }
 
     const addMessage = () => {
         if(messageInputRef.current.value !== "") {
-            props.dispatch(addMessageActionCreator());
+            props.createMessage();
             messageInputRef.current.value = "";
         }
     }

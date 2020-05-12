@@ -3,7 +3,6 @@ import s from './FriendList.module.css';
 import {FriendListItem} from './FriendListItem/FriendListItem';
 
 const FriendList = (props) => {
-    debugger;
     let listItem = props.state.map(elem => <FriendListItem state={elem.name} avatarUrl={elem.avatarUrl}/>)
     return (
         <div className={s.friendListWrapper}>

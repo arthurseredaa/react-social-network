@@ -8,6 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {Newsfeed} from "./Components/Newsfeed/Newsfeed";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
 
@@ -19,10 +20,11 @@ const App = (props) => {
                 <Sidebar/>
                 <div className="appWrapperContent">
                     <Route path="/profile" render={() =>
-                        <Profile profilePage={props.appState} dispatch={props.dispatch} store={props.store}/>} />
+                        <Profile profilePage={props.appState} store={props.store}/>} />
 
                     <Route path="/dialogs" render={() =>
-                        <Dialogs dialogsPage={props.appState} dispatch={props.dispatch}/>} />
+                        <DialogsContainer store={props.store}/>
+                    } />
 
                     <Route path="/newsfeed" component={Newsfeed}/>
                     <Route path="/music" component={Music}/>

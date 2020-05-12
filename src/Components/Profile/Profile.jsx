@@ -7,8 +7,8 @@ const Profile = (props) => {
     debugger;
     return (
         <div className={s.profileWrapper}>
-            <ProfileInfo friends={props.profilePage.profilePage.friends}/>
-            <MyPostsContainer store={props.store}/>
+            <ProfileInfo />
+            <MyPostsContainer />
         </div>
     );
 }

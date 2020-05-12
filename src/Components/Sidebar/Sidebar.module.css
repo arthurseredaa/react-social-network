@@ -10,7 +10,8 @@
   padding: 5px;
 }
 .item:last-child {
-  margin-top: 180%;
+  position: absolute;
+  bottom: 100px;
 }
 .item a.active {
   color: #00e676;
@@ -28,4 +29,29 @@
 .item a:hover {
   color: #fff;
 }
+.friendsOnline {
+  font-size: 15px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px 10px 0px;
+  position: absolute;
+  bottom: 20px;
+}
+.onlineDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 5px #00e676;
+  background-color: #00e676;
+  animation: onlineDotsAnimation 3s ease-in-out infinite;
+}
+
+@keyframes  onlineDotsAnimation{
+  0%{box-shadow: 0px 0px 0px #00e676}
+  50%{box-shadow: 0px 0px 5px #00e676}
+  100%{box-shadow: 0px 0px 0px #00e676}
+}
+
 

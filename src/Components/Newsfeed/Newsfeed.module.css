@@ -1,0 +1,11 @@
+.newsfeed {
+    border: 1px solid #00e676;
+    width: 100%;
+    height: 100%;
+
+}
+.newsWrapper {
+    width: 100%;
+    height: calc(100vh - 120px);
+    overflow: scroll;
+}

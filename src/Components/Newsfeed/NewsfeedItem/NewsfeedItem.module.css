@@ -1,0 +1,28 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column-reverse;
+    width: 70%;
+    margin: 50px auto;
+    background-color: #363E47;
+    border-radius: 3px;
+    padding-bottom: 20px;
+}
+.itemImg {
+    width: 500px;
+}
+.itemTextWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20px;
+}
+.itemTitle {
+    font-size: 25px;
+    border-bottom: 1px solid #00e6a5;
+}
+.itemText {
+    font-size: 17px;
+    line-height: 1.5;
+}

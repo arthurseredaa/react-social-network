@@ -9,8 +9,6 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {SidebarContainer} from "./Components/Sidebar/SidebarContainer";
 import {NewsfeedContainer} from "./Components/Newsfeed/NewsfeedContainer";
 
-
-
 const App = () => {
     return (
         <BrowserRouter>

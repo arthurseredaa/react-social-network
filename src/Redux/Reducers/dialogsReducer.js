@@ -16,7 +16,6 @@ let initialState ={
     newMessageText: "",
 };
 
-//state = state.dialogsPage
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
@@ -24,27 +23,28 @@ const dialogsReducer = (state = initialState, action) => {
                 id: nanoid(10),
                 message: state.newMessageText
             }
-            let stateCopy = {...state};
-            stateCopy.messages = [...state.messages];
-            stateCopy.messages.push(newMessage)
-            stateCopy.newMessageText = '';
-            return stateCopy;
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ""
+            }
         }
         case UPDATE_MESSAGE: {
-            let stateCopy = {...state};
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newMessageText: action.newText
+            }
         }
         default:
             return state;
     }
 }
 
-const addMessageActionCreator = () => ({type: ADD_MESSAGE}),
-    updateMessageActionCreator = (text) => ({type: UPDATE_MESSAGE, newText: text, id: nanoid(10)});
+const addMessageCreator = () => ({type: ADD_MESSAGE}),
+    updateMessageCreator = (text) => ({type: UPDATE_MESSAGE, newText: text, id: nanoid(10)});
 
 export {
     dialogsReducer,
-    addMessageActionCreator,
-    updateMessageActionCreator
+    addMessageCreator,
+    updateMessageCreator
 }

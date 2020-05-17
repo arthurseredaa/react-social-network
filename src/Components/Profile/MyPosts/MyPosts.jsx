@@ -3,9 +3,7 @@ import s from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
 const MyPosts = (props) => {
-    // debugger;
-    let userPosts = props.posts.map(p => <Post postText={p.postText} likesCount={p.likesCount}/>),
-        newPostRef = React.createRef();
+    let newPostRef = React.createRef();
 
     const addNewPost = () => {
         props.addPost();
@@ -14,7 +12,6 @@ const MyPosts = (props) => {
     const onPostChange = () => {
         let text = newPostRef.current.value;
         props.updateNewPostText(text);
-        // props.dispatch(updatePostTextActionCreator(text));
     }
 
     return (
@@ -27,7 +24,8 @@ const MyPosts = (props) => {
                 <button onClick={addNewPost}>Publicate</button>
             </div>
             <div className={s.posts}>
-                {userPosts}
+                {/*Створюємо пости на основі пропсів*/}
+                {props.posts.map(p => <Post key={p.id} postText={p.postText} likesCount={p.likesCount}/>)}
             </div>
         </div>
     );

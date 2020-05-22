@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
+import {LikeButton} from "./LikeButton/LikeButton";
 
 const Post = (props) => {
   return(
@@ -8,7 +9,10 @@ const Post = (props) => {
       <div className={s.postsItemInfo}>
         {`${props.postText}`}
       </div>
-      <span className={s.like}>{`${props.likesCount} likes`}</span>
+      <div className={s.likesWrapper}>
+        <LikeButton />
+        <span className={s.likeCount}>{`${props.likesCount} likes`}</span>
+      </div>
     </div>
   );
 }

@@ -2,11 +2,14 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./Messageitem/MessageItem";
+import TextField from "@material-ui/core/TextField";
 
 const Dialogs = (props) =>{
     let messageInputRef = React.createRef();
 
-    const onMessageChange = () => {
+    const onMessageChange = (e) => {
+        console.log(e.target.value);
+        // let text = e.target.value;
         let text = messageInputRef.current.value;
         props.messageInputChange(text);
     }
@@ -40,6 +43,7 @@ const Dialogs = (props) =>{
                                                           message={m.message}/>)}
                 </div>
                 <div className={s.userCreateMessage}>
+                    {/*<TextField ref={messageInputRef} onChange={(e) => onMessageChange (e)} onKeyPress={(e) => addMessageKeyPress(e)} fullWidth id="standard-full-width" label="Type a message" variant="filled" />*/}
                     <textarea ref={messageInputRef} onChange={onMessageChange} onKeyPress={(e) => addMessageKeyPress(e)}/>
                     <button onClick={addMessage}>Send</button>
                 </div>

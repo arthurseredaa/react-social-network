@@ -1,5 +1,5 @@
-import {profileReducer} from "./Reducers/profileReducer";
-import {dialogsReducer} from "./Reducers/dialogsReducer";
+import {profile} from "./Reducers/profile";
+import {dialogs} from "./Reducers/dialogs";
 
 let store = {
     _state: {
@@ -74,8 +74,8 @@ let store = {
 
     //types: ADD-POST, UPDATE-NEW-POST-TEXT, ADD-MESSAGE, UPDATE-MESSAGE
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profile(this._state.profilePage, action);
+        this._state.dialogsPage = dialogs(this._state.dialogsPage, action);
 
         this._callSubscriber(this._state);
     }

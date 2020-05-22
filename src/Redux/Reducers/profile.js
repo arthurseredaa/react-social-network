@@ -1,7 +1,7 @@
 import {nanoid} from 'nanoid';
+import {ADD_POST, UPDATE_POST_TEXT} from "../Types/profile";
 
-const ADD_POST = "ADD-POST",
-    UPDATE_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 
 let initialState = {
     posts: [
@@ -21,7 +21,7 @@ let initialState = {
 };
 
 //state = state.profilePage
-const profileReducer = (state = initialState, action) => {
+const profile = (state = initialState, action) => {
     switch(action.type) {
         case ADD_POST: {
             let newPost = {
@@ -47,11 +47,6 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-const addPostActionCreator = () => ({type: ADD_POST}),
-    updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
-
 export {
-    profileReducer,
-    addPostActionCreator,
-    updatePostTextActionCreator
+    profile
 }

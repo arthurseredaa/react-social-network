@@ -1,0 +1,35 @@
+.friendsItem {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 50px;
+    margin: 20px 0px;
+    text-decoration: none;
+    transition: .2s all linear;
+    position: relative;
+}
+.friendsItem:hover {
+    background-color: #1d242b;
+    text-shadow: 0px 0px 10px #242d37;
+}
+.friendsItem:hover h1 {
+    color: rgba(255,255,255,1);
+}
+.friendAvatar {
+    width: 60px;
+}
+.friendsItem h1 {
+    text-decoration: none;
+    color: rgba(255,255,255,.7);
+    font-size: 17px;
+    margin: 0px 0px 30px 20px;
+    transition: .1s all linear;
+    font-weight: 400;
+}
+.friendsItem p {
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    right: 50px;
+    top: 20%;
+}

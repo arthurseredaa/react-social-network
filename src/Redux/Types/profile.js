@@ -1,0 +1,7 @@
+const ADD_POST = "ADD-POST",
+    UPDATE_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
+export {
+  ADD_POST,
+  UPDATE_POST_TEXT
+}

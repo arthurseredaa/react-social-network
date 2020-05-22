@@ -1,0 +1,32 @@
+.findUsersHeader {
+    /*border: 1px solid #00e676;*/
+    padding: 10px;
+    margin: 20px 0px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.findUsersHeader input {
+    width: 60%;
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+    outline: none;
+    padding: 4px 15px;
+    font-size: 15px;
+}
+.findUsersHeader button {
+    border: 1px solid #00e676;
+    height: 35px;
+    margin-left: 20px;
+    border-radius: 20px;
+    background: transparent;
+    color: #00e676;
+    font-size: 17px;
+    transition: .1s all linear;
+    cursor: pointer;
+}
+.findUsersHeader button:hover {
+    background-color: #00e676;
+    color: #ffffff;
+}

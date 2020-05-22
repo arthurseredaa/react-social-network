@@ -1,7 +1,5 @@
 import {nanoid} from 'nanoid';
-
-const ADD_MESSAGE = "ADD-MESSAGE",
-    UPDATE_MESSAGE = "UPDATE-MESSAGE";
+import {ADD_MESSAGE, UPDATE_MESSAGE} from "../Types/dialogs";
 
 let initialState ={
     dialogs: [
@@ -16,7 +14,7 @@ let initialState ={
     newMessageText: "",
 };
 
-const dialogsReducer = (state = initialState, action) => {
+const dialogs = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
             let newMessage = {
@@ -40,11 +38,6 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-const addMessageCreator = () => ({type: ADD_MESSAGE}),
-    updateMessageCreator = (text) => ({type: UPDATE_MESSAGE, newText: text, id: nanoid(10)});
-
 export {
-    dialogsReducer,
-    addMessageCreator,
-    updateMessageCreator
+    dialogs
 }

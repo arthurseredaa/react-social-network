@@ -1,21 +1,9 @@
-import React from 'react';
 import {Sidebar} from "./Sidebar";
+import {connect} from "react-redux";
 
-const SidebarContainer = () => {
-    return (<Sidebar />
-        // <StoreContext.Consumer>{
-        //     (store) => {
-        //         let friendsState = store.getState().profilePage.friends,
-        //             friendsArray = friendsState.filter(item => item.online === true),
-        //             online = friendsArray.length;
-        //         return(
-        //             <Sidebar usersOnline={online}/>
-        //         )
-        //     }
-        // }
-        // </StoreContext.Consumer>
-    );
-}
+const mapStateToProps = (state) => ({links: state.sidebar.links})
+
+const SidebarContainer = connect(mapStateToProps, {})(Sidebar);
 
 export {
     SidebarContainer

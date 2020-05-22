@@ -32,7 +32,15 @@
   left: 90px; */
   margin: 50px 0px 20px 90px;
 }
-.like {
+
+.likesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row
+}
+
+.likeCount {
   position: absolute;
   bottom: 20px;
   right: 70px;

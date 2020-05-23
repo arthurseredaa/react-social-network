@@ -29,3 +29,11 @@
 .textInfo p {
     margin-top: -20px;
 }
+.location {
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid #00e676;*/
+    text-align: right;
+    width: 20%;
+    padding-right: 20px;
+}

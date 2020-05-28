@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Friends.module.css';
 import {FriendsHeader} from "./FriendsHeader/FriendsHeader";
 import {Route} from "react-router-dom";
-import {FindUsers} from "./FindUsers/FindUsers";
 import {MyFriends} from "./MyFriends/MyFriends";
 import {FindUsersContainer} from "./FindUsers/FindUsersContainer";
 

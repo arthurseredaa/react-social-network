@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import {FriendList} from './FriendList/FriendList';
 
 const ProfileInfo = (props) => {
   return(
@@ -9,10 +8,6 @@ const ProfileInfo = (props) => {
       <div className={s.descriptionBlock}>
         <img className={s.avatar} src="https://igorzuevich.com/wp-content/uploads/2017/12/avatarka-v-telegram.png"/>
       </div>
-        {/*<StoreContext.Consumer>{*/}
-        {/*    (store) => <FriendList state={store.getState().profilePage.friends}/>*/}
-        {/*}*/}
-        {/*</StoreContext.Consumer>*/}
     </div>
   );
 }

@@ -2,6 +2,8 @@
   grid-area: header;
   background-color: #222A33;
   height: 60px;
+  display: flex;
+  justify-content: flex-end;
 }
 .header img {
   width: 100px;
@@ -11,4 +13,29 @@
 }
 .header span {
   color: #00E676;
+}
+.headerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  width: 200px;
+  list-style: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.navItem {
+  cursor: pointer;
+  background-color: rgba(255,255,255, .4);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.navItem img{
+  width: 25px;
 }

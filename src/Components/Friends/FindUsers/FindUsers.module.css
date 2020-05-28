@@ -16,17 +16,17 @@
     font-size: 15px;
 }
 .findUsersHeader button {
-    border: 1px solid #00e676;
-    height: 35px;
+    /*border: 1px solid #00e676;*/
+    /*height: 35px;*/
     margin-left: 20px;
-    border-radius: 20px;
-    background: transparent;
-    color: #00e676;
-    font-size: 17px;
-    transition: .1s all linear;
-    cursor: pointer;
+    /*border-radius: 20px;*/
+    /*background: transparent;*/
+    /*color: #00e676;*/
+    /*font-size: 17px;*/
+    /*transition: .1s all linear;*/
+    /*cursor: pointer;*/
 }
-.findUsersHeader button:hover {
-    background-color: #00e676;
-    color: #ffffff;
-}
+/*.findUsersHeader button:hover {*/
+/*    background-color: #00e676;*/
+/*    color: #ffffff;*/
+/*}*/

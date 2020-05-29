@@ -1,11 +1,13 @@
-import {nanoid} from 'nanoid';
 import * as types from "../Types/findUser";
 
 let initialState = {
-  users: []
+  users: [],
+  pageSize: 10,
+  totalUsersCount: 0,
+  currentPage: 1
 }
 
-const findUser = (state = initialState, action) => {
+const findUsers = (state = initialState, action) => {
   switch(action.type) {
     case types.FOLLOW:
       return {
@@ -13,7 +15,6 @@ const findUser = (state = initialState, action) => {
         users: state.users.map(user => user.id === action.userId ? {...user, follow: true} : user)
       }
     case types.UNFOLLOW:
-      console.log('test')
       return {
         ...state,
         users: state.users.map(user => user.id === action.userId ? {...user, follow: false} : user)
@@ -21,7 +22,17 @@ const findUser = (state = initialState, action) => {
     case types.SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users]
+        users: [...action.users]
+      }
+    case types.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage
+      }
+    case types.SET_TOTAL_USERS_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount,
       }
     default:
       return state;
@@ -29,5 +40,5 @@ const findUser = (state = initialState, action) => {
 }
 
 export {
-  findUser
+  findUsers
 }

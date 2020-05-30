@@ -4,7 +4,8 @@ let initialState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  isLoading: false
 }
 
 const findUsers = (state = initialState, action) => {
@@ -32,7 +33,12 @@ const findUsers = (state = initialState, action) => {
     case types.SET_TOTAL_USERS_COUNT:
       return {
         ...state,
-        totalUsersCount: action.totalUsersCount,
+        totalUsersCount: action.totalUsersCount
+      }
+    case types.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading
       }
     default:
       return state;

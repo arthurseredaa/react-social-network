@@ -53,6 +53,7 @@ class FindUsersAPIContainer extends React.Component {
           <NavLink to={`/profile/${user.id}`}>
             <Avatar imageUrl={user.photos.small ? user.photos.small : basicAvatar} imageAlt="User avatar not available =(" width="80"/>
           </NavLink>
+          {/*Да, я знаю что в коде ниже черт ногу поломает, но из-за того что у меня не получалось по нормальному реализовать подписку, я повторил за Димычем*/}
           {
             user.follow
                 ? <Button color="default" variant="contained" onClick={() => {

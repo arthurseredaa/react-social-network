@@ -1,45 +1,43 @@
 .header {
-  grid-area: header;
-  background-color: #222A33;
-  height: 60px;
-  display: flex;
-  justify-content: flex-end;
+    grid-area: header;
+    /*background-color: #222A33;*/
+    background-color: var(--main-bg-color);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
 }
+
 .header img {
-  width: 100px;
+    width: 100px;
 }
+
 .header h1 {
-  margin: 0px 0px 0px 50px;
+    margin: 0px 0px 0px 50px;
+    color: #fff;
 }
-.header span {
-  color: #00E676;
+
+.header span a{
+    /*color: #00E676;*/
+    color: var(--accent-color)
 }
-.headerNav {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 200px;
-  list-style: none;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+
+.headerTitle a {
+    text-decoration: none;
+    color: #00e676;
 }
-.navItem {
-  cursor: pointer;
-  background-color: rgba(255,255,255, .4);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
+.loginData {
+    margin-left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.navItem img{
-  width: 25px;
+.loginData a {
+    color: var(--accent-color);
+    text-decoration: none;
 }
-.headerTitle a{
-  text-decoration: none;
-  color: #00e676;
+.userName {
+    color: #fff;
+    font-weight: 300;
 }

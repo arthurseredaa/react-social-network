@@ -1,6 +1,7 @@
 .nav {
   grid-area: nav;
-  background-color: #222A33;
+  /*background-color: #222A33;*/
+  background-color: var(--main-bg-color);
   padding: 10px;
   text-align: left;
   height: calc(100vh - 80px);
@@ -14,7 +15,8 @@
   bottom: 100px;
 }
 .item a.active {
-  color: #00e676;
+  /*color: #00e676;*/
+  color: var(--accent-color)
 }
 .item a {
   text-decoration: none;
@@ -25,9 +27,14 @@
   font-weight: 400;
   margin: auto 10px;
   z-index: 2;
+  align-items: center;
+  display: flex;
 }
 .item a:hover {
   color: #fff;
+}
+.item img {
+  margin-right: 30px;
 }
 .friendsOnline {
   font-size: 15px;

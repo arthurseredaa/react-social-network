@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-areas: "m d";
-    height: calc(100vh - 60px);
+    height: calc(100vh - 40px);
 }
 .dialogsItems {
     display: flex;
@@ -13,16 +13,19 @@
 .dialogsItems a.active {
     color: #00e676;
     background-color: rgba(88, 96, 109, 0.6);
+    font-weight: 600;
 }
 .dialogsItems a {
-    background-color: #222A33;
+    /*background-color: #222A33;*/
+    background-color: var(--secondary-bg-color);
     padding: 10px 20px;
     height: 50px;
     text-decoration: none;
-    color: #fff;
+    color: #000;
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 300;
     transition: .1s linear;
+    border-bottom: 1px solid rgba(158,158,158, .7);
 }
 .dialogsItems a:hover {
     background-color: #545c65;
@@ -30,7 +33,7 @@
 .dialogsTitle {
     font-weight: 300;
     letter-spacing: 1px;
-    margin: -10px 0px 10px 15px;
+    margin: 0px 0px 10px 15px;
 }
 .messages {
     background: rgba(88, 96, 109, 0.6);

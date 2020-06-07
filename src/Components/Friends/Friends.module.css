@@ -3,7 +3,7 @@
     height: calc(100vh - 60px);
 }
 .friendsHeader {
-    border-bottom: 1px solid #00e676;
+    border-bottom: 1px solid var(--accent-color);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -11,7 +11,7 @@
 }
 .friendsWrapper .friendsHeader a {
     text-decoration: none;
-    color: #ffffff;
+    color: var(--main-bg-color);
     font-size: 20px;
     opacity: .5;
     margin: 5px 10px;

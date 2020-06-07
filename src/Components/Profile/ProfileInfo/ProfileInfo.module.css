@@ -9,7 +9,8 @@
 .profileInfoWrapper {
   padding-bottom: 100px;
   position: relative;
-  background-color: #222A33;
+  /*background-color: #222A33;*/
+  background-color: var(--secondary-bg-color);
   overflow: hidden;
 }
 .profileInfoWrapper:after {
@@ -19,5 +20,71 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: #00e676;
+  /*background-color: #00e676;*/
+  background-color: var(--accent-color);
 }
+.descriptionBlock {
+}
+.descriptionBlock img {
+  margin: -80px 0px 10px 10px;
+}
+.nameAndStatus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(0,0,0,.5);
+  padding: 0
+}
+.userFullName {
+  font-weight: 300;
+  font-size: 40px;
+}
+.userStatus {
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 20px;
+}
+.jobAndContacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /*border: 1px solid #00e676;*/
+
+}
+.job span {
+  color: var(--accent-color);
+  text-align: left;
+}
+.jobTitle {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 25px;
+  color: var(--accent-color)
+}
+.jobStatus {
+  font-weight: 300;
+}
+.jobStatusDescr {
+  font-weight: 300;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.contactsTitle {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 25px;
+  margin-bottom: 5px;
+  color: var(--accent-color)
+}
+.contacts a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-size: 17px;
+}
+.contacts a:hover {
+  color: var(--accent-color);
+}
+

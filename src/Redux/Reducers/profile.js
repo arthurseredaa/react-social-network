@@ -1,9 +1,10 @@
 import {nanoid} from 'nanoid';
-import {ADD_POST, UPDATE_POST_TEXT} from "../Types/profile";
+import * as types from "../Types/profile";
 
 
 
 let initialState = {
+    profile: null,
     posts: [
         {id: 1, postText: "Hello, world!", likesCount: 2},
     ],
@@ -23,7 +24,7 @@ let initialState = {
 //state = state.profilePage
 const profile = (state = initialState, action) => {
     switch(action.type) {
-        case ADD_POST: {
+        case types.ADD_POST:
             let newPost = {
                 id: nanoid(10),
                 postText: state.newPostText,
@@ -34,14 +35,16 @@ const profile = (state = initialState, action) => {
                 posts: [...state.posts, newPost],
                 newPostText: "",
             }
-        }
-        case UPDATE_POST_TEXT: {
+        case types.UPDATE_POST_TEXT:
             return {
                 ...state,
                 newPostText: action.newText,
             }
-            // return stateCopy;
-        }
+        case types.SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: { ...action.profile }
+            }
         default:
             return state
     }

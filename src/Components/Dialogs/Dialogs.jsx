@@ -11,19 +11,19 @@ const Dialogs = (props) =>{
         console.log(e.target.value);
         // let text = e.target.value;
         let text = messageInputRef.current.value;
-        props.messageInputChange(text);
+        props.updateMessage(text);
     }
 
     const addMessage = () => {
         if(messageInputRef.current.value !== "") {
-            props.createMessage();
+            props.addMessage();
             messageInputRef.current.value = "";
         }
     }
     const addMessageKeyPress = (e) => {
         if(e.key === "Enter" && messageInputRef.current.value !== "") {
             e.preventDefault();
-            props.createMessage();
+            props.addMessage();
             messageInputRef.current.value = "";
         }
     }

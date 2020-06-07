@@ -1,28 +1,34 @@
 import {connect} from "react-redux";
 import {
-  followActionCreator,
-  setCurrentPageActionCreator, setLoading, setTotalUsersCount,
-  setUsersActionCreators,
-  unfollowActionCreator
+  follow,
+  setCurrentPage,
+  setLoading,
+  setTotalUsersCount,
+  setUsers,
+  unfollow
 } from "../../../Redux/Actions/findUser";
 import React from "react";
 import * as axios from "axios";
 import {nanoid} from "nanoid";
-import s from "./FindUsers.module.css";
 import {FindUsersHeader} from "./FindUsersHeader/FindUsersHeader";
-import {FindUserItem} from "./FindUserItem/FindUserItem";
+// import {FindUserItem} from "./FindUserItem/FindUserItem";
 import {Pagination} from "./Pagination/Pagination";
 import {Preloader} from "../../Preloader/Preloader";
+import s from "./FindUserItem/FindUserItem.module.css";
+import {NavLink} from "react-router-dom";
+import {Avatar} from "../../Avatar/Avatar";
+import basicAvatar from "../../../assets/images/basic-avatar.png";
+import Button from "@material-ui/core/Button";
 
 class FindUsersAPIContainer extends React.Component {
 
   componentDidMount() {
     if (this.props.users.length === 0) {
       //Делаем запрос при первой отрисовке странички(запрос будет сделан аавтоматически при переходе на эту страничку)
-      this.props.setLoadingStatus(true)
+      this.props.setLoading(true)
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
           .then(response => {
-            this.props.setLoadingStatus(false);
+            this.props.setLoading(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
           });
@@ -31,10 +37,10 @@ class FindUsersAPIContainer extends React.Component {
 
   onPageChanged = (pageNum) => {
     this.props.setCurrentPage(pageNum);
-    this.props.setLoadingStatus(true)
+    this.props.setLoading(true)
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`)
         .then(response => {
-          this.props.setLoadingStatus(false)
+          this.props.setLoading(false)
           this.props.setUsers(response.data.items);
         });
   }
@@ -42,22 +48,61 @@ class FindUsersAPIContainer extends React.Component {
   render() {
 
     let usersPerPage = this.props.users.map(user => {
-      let btnInfo = {
-        btnText: user.follow ? "Unfollow" : "Follow",
-        btnFunc: user.follow ? this.props.unfollow : this.props.followed
-      }
-      return <FindUserItem buttonInfo={btnInfo} key={nanoid(5)} user={user}/>
+      return <div key={nanoid(5)} className={s.userItem}>
+        <div className={s.avatarWrapper}>
+          <NavLink to={`/profile/${user.id}`}>
+            <Avatar imageUrl={user.photos.small ? user.photos.small : basicAvatar} imageAlt="User avatar not available =(" width="80"/>
+          </NavLink>
+          {
+            user.follow
+                ? <Button color="default" variant="contained" onClick={() => {
+                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                    withCredentials: true,
+                    headers: {
+                      "API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
+                    }
+                  }).then(response => {
+                    if(response.data.resultCode === 0) {
+                      console.log('unfollow', response);
+                      this.props.unfollow(user.id)
+                    }
+                  })
+                }}>Unfollow</Button>
+                : <Button color="default" variant="contained" onClick={() => {
+                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {
+                    withCredentials: true,
+                    headers: {
+                      "API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
+                    }
+                  }).then(response => {
+                    if(response.data.resultCode === 0) {
+                      console.log('follow', response);
+                      this.props.follow(user.id)
+                    }
+                  })
+                }}>Follow</Button>
+          }
+        </div>
+        <div className={s.textInfo}>
+          <h4>{user.name}</h4>
+          <p>props.description</p>
+        </div>
+        <div className={s.location}>
+          <p>props.location.city</p>
+          <p>props.location.street</p>
+        </div>
+      </div>
     });
 
     return (
         <>
           <FindUsersHeader/>
           {this.props.isLoading ? <Preloader /> : null}
+          {!this.props.isLoading ? <div>{usersPerPage}</div> : null}
           <Pagination totalUsersCount={this.props.totalUsersCount}
                       pageSize={this.props.pageSize}
                       currentPage={this.props.currentPage}
                       onPageChanged={this.onPageChanged.bind(this)}/>
-          {!this.props.isLoading ? <div>{usersPerPage}</div> : null}
         </>
     )
   }
@@ -69,14 +114,6 @@ let mapStateToProps = (state) => ({
       totalUsersCount: state.findUsersPage.totalUsersCount,
       currentPage: state.findUsersPage.currentPage,
       isLoading: state.findUsersPage.isLoading
-    }),
-    mapDispatchToProps = (dispatch) => ({
-      followed: (userId) => dispatch(followActionCreator(userId)),
-      unfollow: (userId) => dispatch(unfollowActionCreator(userId)),
-      setUsers: (users) => dispatch(setUsersActionCreators(users)),
-      setCurrentPage: (page) => dispatch(setCurrentPageActionCreator(page)),
-      setTotalUsersCount: (count) => dispatch(setTotalUsersCount(count)),
-      setLoadingStatus: (isLoading) => dispatch(setLoading(isLoading))
     });
 
-export const FindUsersContainer = connect(mapStateToProps, mapDispatchToProps)(FindUsersAPIContainer);
+export const FindUsersContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading})(FindUsersAPIContainer);

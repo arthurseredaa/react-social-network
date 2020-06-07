@@ -4,13 +4,15 @@ import {sidebar} from "./Reducers/sidebar";
 import {friends} from "./Reducers/friends";
 import {dialogs} from "./Reducers/dialogs";
 import {findUsers} from "./Reducers/findUsers";
+import {authReducer} from "./Reducers/authorization";
 
 let reducers = combineReducers({
     profilePage: profile,
     dialogsPage: dialogs,
     sidebar: sidebar,
     friendsPage: friends,
-    findUsersPage: findUsers
+    findUsersPage: findUsers,
+    auth: authReducer
 })
 
 let store = createStore(reducers);

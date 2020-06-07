@@ -1,10 +1,6 @@
-import {ADD_POST, UPDATE_POST_TEXT} from "../Types/profile";
+import * as types from "../Types/profile";
 
 //Action creators які повертають об'єкт action
-const addPostActionCreator = () => ({type: ADD_POST}),
-    updatePostTextActionCreator = (text) => ({type: UPDATE_POST_TEXT, newText: text});
-
-export {
-  addPostActionCreator,
-  updatePostTextActionCreator
-}
+export const addPost = () => ({type: types.ADD_POST}),
+    updatePostText = (text) => ({type: types.UPDATE_POST_TEXT, newText: text}),
+    setUserProfile = (profile) => ({type: types.SET_USER_PROFILE, profile});

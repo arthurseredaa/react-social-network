@@ -1,42 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './Header.module.css';
-import dropdownArrow from '../../assets/icons/header/dropdown-arrow.svg';
-import profileIcon from '../../assets/icons/header/profile.svg';
 import {NavLink} from "react-router-dom";
-import {Preloader} from "../Preloader/Preloader";
-const Header = () => {
 
-  const [dropdown, setDropdown] = useState(false);
-
-  const HeaderNav = (props) => {
-    return (
-        <ul className={s.headerNav}>
-          {dropdown && <h1>Hello, world</h1>}
-          {props.children}
-        </ul>
-    )
-  }
-
-  // const HeaderNavElement = (props) => {
-  //   return (
-  //       <li className={s.navItem} onClick={() => setDropdown(!dropdown)}>
-  //         <img src={props.icon} alt=""/>
-  //       </li>
-  //   )
-  // }
+export const Header = (props) => {
     return (
         <header className={s.header}>
-            <HeaderNav>
-              <h1 className={s.headerTitle}>React<span><NavLink to={'/profile'}>DEV</NavLink></span></h1>
-            </HeaderNav>
+          <h1 className={s.headerTitle}>React<span><NavLink to={'/profile'}>DEV</NavLink></span></h1>
+          <div className={s.loginData}>
+            {props.isAuth ? <h4 className={s.userName}>{props.login}</h4> : <NavLink to={'/login'}>Log in</NavLink>}
+          </div>
         </header>
     );
 }
 
-
-
-
-
-export {
-    Header
-};

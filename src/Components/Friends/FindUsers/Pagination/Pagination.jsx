@@ -1,6 +1,7 @@
 import React from "react";
 import {nanoid} from "nanoid";
 import s from "../FindUsers.module.css";
+import "./Pagination.module.css"
 
 export const Pagination = (props) => {
 

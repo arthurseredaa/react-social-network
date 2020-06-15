@@ -18,6 +18,7 @@ const FindUserItem = (props) => {
         {
           props.user.follow
               ? <Button color="default" variant="contained" onClick={() => {
+                debugger;
                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.user.id}`, {
                   withCredentials: true,
                   headers: {

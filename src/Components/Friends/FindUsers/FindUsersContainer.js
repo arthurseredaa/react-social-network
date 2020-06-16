@@ -18,6 +18,7 @@ import { NavLink } from "react-router-dom";
 import { Avatar } from "../../Avatar/Avatar";
 import basicAvatar from "../../../assets/images/basic-avatar.png";
 import Button from "@material-ui/core/Button";
+import { usersAPI } from "../../../api/api.js";
 
 class FindUsersAPIContainer extends React.Component {
 
@@ -25,34 +26,23 @@ class FindUsersAPIContainer extends React.Component {
 		if (this.props.users.length === 0) {
 			//Делаем запрос при первой отрисовке странички(запрос будет сделан аавтоматически при переходе на эту страничку)
 			this.props.setLoading(true)
-			axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-				withCredentials: true,
-				headers: {
-					"API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
-				}
-			})
+			usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
 				.then(response => {
 					this.props.setLoading(false);
-					this.props.setUsers(response.data.items);
-					this.props.setTotalUsersCount(response.data.totalCount);
-				});
+					this.props.setUsers(response.items);
+					this.props.setTotalUsersCount(response.totalCount);
+				})
 		}
 	}
 
 	onPageChanged = (pageNum) => {
 		this.props.setCurrentPage(pageNum);
 		this.props.setLoading(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`, {
-			withCredentials: true,
-			headers: {
-				"API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
-			}
+
+		usersAPI.getUsers().then(data => {
+			this.props.setLoading(false);
+			this.props.setUsers(data.items);
 		})
-			.then(response => {
-				console.log(response)
-				this.props.setLoading(false)
-				this.props.setUsers(response.data.items);
-			});
 	}
 
 	render() {
@@ -63,32 +53,27 @@ class FindUsersAPIContainer extends React.Component {
 					<NavLink to={`/profile/${user.id}`}>
 						<Avatar imageUrl={user.photos.small ? user.photos.small : basicAvatar} imageAlt="User avatar not available =(" width="80" />
 					</NavLink>
-					{/*Да, я знаю что в коде ниже черт ногу поломает, но из-за того что у меня не получалось по нормальному реализовать подписку, я повторил за Димычем*/}
+
 					{
 						user.followed
 							? <Button color="default" variant="contained" onClick={() => {
-								axios.delete(`https://social-network.samuraijs.com/api/1.0/unfollow/${user.id}`, {
-									withCredentials: true,
-									headers: {
-										"API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
-									}
-								}).then(response => {
-									console.log(response)
-									if (response.data.resultCode === 0) {
-										console.log('unfollow', response);
-										this.props.unfollow(user.id)
-									}
-								})
+								// НЕ РАБОТАЕТ. ПРИЧИНА: КРИВОЕ API
+								usersAPI.deleteUser(user.id)
+									.then(response => {
+										if (response.resultCode === 0) {
+											this.props.unfollow(user.id);
+										}
+									})
 							}}>Unfollow</Button>
 							: <Button color="default" variant="contained" onClick={() => {
+								// РАБОТАЕТ
 								axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
 									withCredentials: true,
 									headers: {
-										"API-KEY": "07fe285a-0fda-4026-afda-163cf1cdc216"
+										"API-KEY": "fd89dee9-23c2-4f06-afb8-1c5e88912d81"
 									}
 								}).then(response => {
 									if (response.data.resultCode === 0) {
-										console.log('follow', response);
 										this.props.follow(user.id)
 									}
 								})

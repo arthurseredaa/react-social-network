@@ -5,10 +5,10 @@ import {
 	setLoading,
 	setTotalUsersCount,
 	setUsers,
-	unfollow
+	unfollow,
+	followProcessing
 } from "../../../Redux/Actions/findUser";
 import React from "react";
-import * as axios from "axios";
 import { nanoid } from "nanoid";
 import { FindUsersHeader } from "./FindUsersHeader/FindUsersHeader";
 import { Pagination } from "./Pagination/Pagination";
@@ -56,33 +56,31 @@ class FindUsersAPIContainer extends React.Component {
 
 					{
 						user.followed
-							? <Button color="default" variant="contained" onClick={() => {
-								// НЕ РАБОТАЕТ. ПРИЧИНА: КРИВОЕ API
-								usersAPI.deleteUser(user.id)
+							? <Button color="default" variant="contained" disabled={this.props.isFollowingProcessing.some(id => id === user.id)} onClick={() => {
+								this.props.followProcessing(true, user.id);
+								usersAPI.unfollowUser(user.id)
 									.then(response => {
 										if (response.resultCode === 0) {
 											this.props.unfollow(user.id);
+											this.props.followProcessing(false, user.id);
 										}
 									})
 							}}>Unfollow</Button>
-							: <Button color="default" variant="contained" onClick={() => {
-								// РАБОТАЕТ
-								axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-									withCredentials: true,
-									headers: {
-										"API-KEY": "fd89dee9-23c2-4f06-afb8-1c5e88912d81"
-									}
-								}).then(response => {
-									if (response.data.resultCode === 0) {
-										this.props.follow(user.id)
-									}
-								})
+							: <Button color="default" variant="contained" disabled={this.props.isFollowingProcessing.some(id => id === user.id)} onClick={() => {
+								this.props.followProcessing(true, user.id);
+								usersAPI.followUser(user.id)
+									.then(response => {
+										if (response.resultCode === 0) {
+											this.props.follow(user.id);
+											this.props.followProcessing(false, user.id);
+										}
+									})
 							}}>Follow</Button>
 					}
 				</div>
 				<div className={s.textInfo}>
 					<h4>{user.name}</h4>
-					<p>props.description</p>
+					<p>props.description, {user.id}</p>
 				</div>
 				<div className={s.location}>
 					<p>props.location.city</p>
@@ -110,7 +108,8 @@ let mapStateToProps = (state) => ({
 	pageSize: state.findUsersPage.pageSize,
 	totalUsersCount: state.findUsersPage.totalUsersCount,
 	currentPage: state.findUsersPage.currentPage,
-	isLoading: state.findUsersPage.isLoading
+	isLoading: state.findUsersPage.isLoading,
+	isFollowingProcessing: state.findUsersPage.isFollowingProcessing,
 });
 
-export const FindUsersContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading })(FindUsersAPIContainer);
+export const FindUsersContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setLoading, followProcessing })(FindUsersAPIContainer);

@@ -1,4 +1,6 @@
 import * as types from "../Types/findUser";
+import { usersAPI } from "../../api/api";
+import { setLoading, setUsers, setTotalUsersCount, followProcessing, follow, unfollow } from "../Actions/findUser";
 
 let initialState = {
 	users: [],
@@ -6,10 +8,10 @@ let initialState = {
 	totalUsersCount: 0,
 	currentPage: 1,
 	isLoading: false,
-	isFollowingProcessing: [8846]
+	isFollowingProcessing: []
 }
 
-const findUsers = (state = initialState, action) => {
+export const findUsers = (state = initialState, action) => {
 	switch (action.type) {
 		case types.FOLLOW:
 			return {
@@ -53,6 +55,34 @@ const findUsers = (state = initialState, action) => {
 	}
 }
 
-export {
-	findUsers
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+	dispatch(setLoading(true));
+	usersAPI.getUsers(currentPage, pageSize)
+		.then(response => {
+			dispatch(setLoading(false));
+			dispatch(setUsers(response.items));
+			dispatch(setTotalUsersCount(response.totalCount));
+		})
+}
+
+export const followUser = (userId) => (dispatch) => {
+	dispatch(followProcessing(true, userId))
+	usersAPI.followUser(userId)
+		.then(response => {
+			if (response.resultCode === 0) {
+				dispatch(follow(userId));
+				dispatch(followProcessing(false, userId));
+			}
+		})
+}
+
+export const unfollowUser = (userId) => (dispatch) => {
+	dispatch(followProcessing(true, userId))
+	usersAPI.unfollowUser(userId)
+		.then(response => {
+			if (response.resultCode === 0) {
+				dispatch(unfollow(userId));
+				dispatch(followProcessing(false, userId));
+			}
+		})
 }

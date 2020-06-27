@@ -1,12 +1,10 @@
-import React from "react";
-import {Newsfeed} from "./Newsfeed";
+import { Newsfeed } from "./Newsfeed";
+import { connect } from "react-redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
-const NewsfeedContainer = () => {
-    return (
-        <Newsfeed />
-    )
-}
+let mapStateToProps = (state) => ({ isAuth: state.auth.isAuth })
 
-export  {
-    NewsfeedContainer
-}
+let NewsfeedWithRedirect = withAuthRedirect(Newsfeed);
+
+export let NewsfeedContainer = connect(mapStateToProps, {})(NewsfeedWithRedirect)
+

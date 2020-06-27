@@ -1,6 +1,11 @@
-import {Friends} from './Friends';
-import {connect} from "react-redux";
+import { Friends } from './Friends';
+import { connect } from "react-redux";
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 
-let mapStateToProps = (state) => ({friends: state.friendsPage.friends})
+let mapStateToProps = (state) => ({
+	friends: state.friendsPage.friends,
+})
 
-export const FriendsContainer = connect(mapStateToProps, {})(Friends);
+let FriendsWithRedirect = withAuthRedirect(Friends)
+
+export const FriendsContainer = connect(mapStateToProps, {})(FriendsWithRedirect);

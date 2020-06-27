@@ -1,43 +1,60 @@
 .header {
-    grid-area: header;
-    /*background-color: #222A33;*/
-    background-color: var(--main-bg-color);
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    align-items: center;
+	grid-area: header;
+	/*background-color: #222A33;*/
+	background-color: var(--main-bg-color);
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row-reverse;
+	align-items: center;
 }
 
 .header img {
-    width: 100px;
+	width: 100px;
 }
 
 .header h1 {
-    margin: 0px 0px 0px 50px;
-    color: #fff;
+	margin: 0px 0px 0px 50px;
+	color: #fff;
 }
 
-.header span a{
-    /*color: #00E676;*/
-    color: var(--accent-color)
+.header span a {
+	/*color: #00E676;*/
+	color: var(--accent-color);
 }
 
 .headerTitle a {
-    text-decoration: none;
-    color: #00e676;
+	text-decoration: none;
+	color: #00e676;
 }
 .loginData {
-    margin-left: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	margin-left: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .loginData a {
-    color: var(--accent-color);
-    text-decoration: none;
+	color: var(--accent-color);
+	text-decoration: none;
 }
 .userName {
-    color: #fff;
-    font-weight: 300;
+	color: #fff;
+	font-weight: 300;
+}
+
+@media (max-width: 500px) {
+	.header {
+		flex-direction: column;
+	}
+	.loginData {
+		margin-top: -20px;
+	}
+}
+
+.authorized {
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row-reverse;
 }

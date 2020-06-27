@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { setProfile } from '../../Redux/Reducers/profile';
 import { Preloader } from '../Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileAPIContainer extends React.Component {
 	componentDidMount() {
@@ -26,7 +27,7 @@ let mapStateToProps = (state) => ({
 	isLoading: state.profilePage.profileLoading
 })
 
-let ProfileContainerWithRedirect = withAuthRedirect(ProfileAPIContainer)
+export const ProfileContainer = compose(withRouter, withAuthRedirect, connect(mapStateToProps, { setUserProfile, setProfile }))(ProfileAPIContainer)
 
-export const ProfileContainer = withRouter(connect(mapStateToProps, { setUserProfile, setProfile })(ProfileContainerWithRedirect));
+
 

@@ -1,90 +1,79 @@
-.headImage {
-  height: 200px;
-  width: 100%;
-}
 .avatar {
-  width: 100px;
-  margin-top: -100px;
+	width: 100px;
+	margin-top: 100px;
 }
 .profileInfoWrapper {
-  padding-bottom: 100px;
-  position: relative;
-  /*background-color: #222A33;*/
-  background-color: var(--secondary-bg-color);
-  overflow: hidden;
+	position: relative;
+	background-color: var(--secondary-bg-color);
+	overflow: hidden;
+	padding: 100px 15px 50px;
 }
 .profileInfoWrapper:after {
-  content: "";
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  /*background-color: #00e676;*/
-  background-color: var(--accent-color);
-}
-.descriptionBlock {
+	content: "";
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background-color: var(--accent-color);
 }
 .descriptionBlock img {
-  margin: -80px 0px 10px 10px;
+	margin: -80px 0px 10px 10px;
 }
 .nameAndStatus {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px dashed rgba(0,0,0,.5);
-  padding: 0
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
+	padding: 0;
 }
 .userFullName {
-  font-weight: 300;
-  font-size: 40px;
+	font-weight: 300;
+	font-size: 40px;
 }
 .userStatus {
-  color: rgba(0, 0, 0, 0.7);
-  margin-right: 20px;
+	color: rgba(0, 0, 0, 0.7);
+	margin-right: 20px;
 }
 .jobAndContacts {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /*border: 1px solid #00e676;*/
-
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 .job span {
-  color: var(--accent-color);
-  text-align: left;
+	color: var(--accent-color);
+	text-align: left;
 }
 .jobTitle {
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 25px;
-  color: var(--accent-color)
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 25px;
+	color: var(--accent-color);
 }
 .jobStatus {
-  font-weight: 300;
+	font-weight: 300;
 }
 .jobStatusDescr {
-  font-weight: 300;
+	font-weight: 300;
 }
 .contacts {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
 }
 .contactsTitle {
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 25px;
-  margin-bottom: 5px;
-  color: var(--accent-color)
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 25px;
+	margin-bottom: 5px;
+	color: var(--accent-color);
 }
 .contacts a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 400;
-  font-size: 17px;
+	text-decoration: none;
+	color: #000;
+	font-weight: 400;
+	font-size: 17px;
 }
 .contacts a:hover {
-  color: var(--accent-color);
+	color: var(--accent-color);
 }
-

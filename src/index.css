@@ -1,24 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 
 :root {
-    --main-bg-color: #1b1b1b;
-    --secondary-bg-color: #bdbdbd;
-  --accent-color: #7c4dff;
+	--main-bg-color: #1b1b1b;
+	--secondary-bg-color: #bdbdbd;
+	--accent-color: #7c4dff;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #bdbdbd;
-    outline: none;
-    color: #000;
-    overflow: hidden;
+	margin: 0;
+	padding: 0;
+	font-family: Roboto, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #bdbdbd;
+	outline: none;
+	color: #000;
+	overflow: hidden;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

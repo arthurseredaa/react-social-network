@@ -3,7 +3,10 @@ import s from './ProfileInfo.module.css';
 import { Avatar } from "../../Avatar/Avatar";
 import defaultAvatar from '../../../assets/images/basic-avatar.png';
 import { nanoid } from 'nanoid';
-const ProfileInfo = (props) => {
+import { ProfileStatus } from './ProfileStatus/ProfileStatus';
+
+export const ProfileInfo = (props) => {
+
 	let contacts = Object.keys(props.profile.contacts).map(elem => {
 		if (props.profile.contacts[elem]) {
 			return elem;
@@ -12,12 +15,14 @@ const ProfileInfo = (props) => {
 
 	return (
 		<div className={s.profileInfoWrapper}>
-			<img className={s.headImage} src="https://www.w3schools.com/howto/img_snow_wide.jpg" />
 			<div className={s.descriptionBlock}>
 				<Avatar imageUrl={props.profile.photos.small === null ? defaultAvatar : props.profile.photos.small} width={90} />
 				<div className={s.nameAndStatus}>
 					<h1 className={s.userFullName}>{props.profile.fullName}</h1>
-					<p className={s.userStatus}>{props.profile.aboutMe}</p>
+					<ProfileStatus editMode={props.editMode} status={props.statusText}
+						setStatusText={props.setStatusText} setEditMode={props.setEditMode}
+						editStatusText={props.editStatusText} newStatusText={props.newStatusText}
+						cancelSetStatus={props.cancelSetStatus} updateStatus={props.updateStatus} />
 				</div>
 				<div className={s.jobAndContacts}>
 					<div className={s.job}>
@@ -37,6 +42,3 @@ const ProfileInfo = (props) => {
 	);
 }
 
-export {
-	ProfileInfo
-};

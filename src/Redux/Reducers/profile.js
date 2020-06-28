@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import * as types from "../Types/profile";
-import { setUserProfile, setProfileLoading } from '../Actions/profile';
+import { setUserProfile, setProfileLoading, setStatusFromSerever } from '../Actions/profile';
 import { profileAPI } from '../../api/api';
 
 
@@ -22,9 +22,13 @@ let initialState = {
 		{ id: 7, name: "Pitro", avatarUrl: "https://pngimage.net/wp-content/uploads/2018/06/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B8-png-1.png", online: false },
 		{ id: 8, name: "Olko", avatarUrl: "https://pngimage.net/wp-content/uploads/2018/06/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B8-png-1.png", online: true },
 	],
+	profileInfo: {
+		editMode: false,
+		statusText: "",
+		newStatusText: ""
+	}
 };
 
-//state = state.profilePage
 export const profile = (state = initialState, action) => {
 	switch (action.type) {
 		case types.ADD_POST:
@@ -53,6 +57,26 @@ export const profile = (state = initialState, action) => {
 				...state,
 				profileLoading: action.isLoading
 			}
+		case types.EDIT_STATUS_TEXT:
+			return {
+				...state,
+				profileInfo: { ...state.profileInfo, newStatusText: action.text }
+			}
+		case types.SET_STATUS_TEXT:
+			return {
+				...state,
+				profileInfo: { ...state.profileInfo, statusText: state.profileInfo.newStatusText, newStatusText: "" }
+			}
+		case types.CANCEL_SET_STATUS:
+			return {
+				...state,
+				profileInfo: { ...state.profileInfo, newStatusText: "" }
+			}
+		case types.SET_STATUS_FROM_SERVER:
+			return {
+				...state,
+				profileInfo: { ...state.profileInfo, statusText: action.status }
+			}
 		default:
 			return state
 	}
@@ -64,5 +88,21 @@ export const setProfile = (userId) => (dispatch) => {
 		.then(response => {
 			dispatch(setUserProfile(response.data));
 			dispatch(setProfileLoading(false));
+		})
+}
+
+export const setStatus = (userId) => (dispatch) => {
+	profileAPI.getStatus(userId)
+		.then(response => {
+			dispatch(setStatusFromSerever(response.data));
+		})
+}
+
+export const updateStatus = (status) => (dispatch) => {
+	profileAPI.updateStatus(status)
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(setStatusFromSerever(status));
+			}
 		})
 }

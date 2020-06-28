@@ -16,11 +16,9 @@ export const FindUserItem = ({ user, follow, unfollow, isFollowingProcessing }) 
 				{
 					user.followed
 						? <Button color="default" variant="contained" disabled={isFollowingProcessing.some(id => id === user.id)} onClick={() => {
-							console.log(isFollowingProcessing)
 							unfollow(user.id);
 						}}>Unfollow</Button>
 						: <Button color="default" variant="contained" disabled={isFollowingProcessing.some(id => id === user.id)} onClick={() => {
-							console.log(isFollowingProcessing)
 							follow(user.id);
 						}}>Follow</Button>
 				}

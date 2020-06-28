@@ -1,0 +1,24 @@
+.statusWrapper {
+	display: flex;
+	align-items: center;
+}
+
+.statusText {
+	margin-right: 15px;
+	color: #000;
+	cursor: default !important;
+}
+.statusText:hover {
+	color: #000;
+}
+
+.statusEdit {
+	display: flex;
+	flex-direction: column;
+}
+.editStatusTools {
+	display: flex;
+}
+.editStatusTools button:hover {
+	color: #fff;
+}

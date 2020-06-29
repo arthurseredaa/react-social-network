@@ -1,10 +1,10 @@
-import {Sidebar} from "./Sidebar";
-import {connect} from "react-redux";
+import { Sidebar } from "./Sidebar";
+import { connect } from "react-redux";
 
-const mapStateToProps = (state) => ({links: state.sidebar.links})
+const mapStateToProps = (state) => ({
+	links: state.sidebar.links,
+	profileId: state.auth.id
+})
 
-const SidebarContainer = connect(mapStateToProps, {})(Sidebar);
+export const SidebarContainer = connect(mapStateToProps)(Sidebar);
 
-export {
-    SidebarContainer
-};

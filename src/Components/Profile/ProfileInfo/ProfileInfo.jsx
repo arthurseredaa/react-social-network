@@ -22,7 +22,8 @@ export const ProfileInfo = (props) => {
 					<ProfileStatus editMode={props.editMode} status={props.statusText}
 						setStatusText={props.setStatusText} setEditMode={props.setEditMode}
 						editStatusText={props.editStatusText} newStatusText={props.newStatusText}
-						cancelSetStatus={props.cancelSetStatus} updateStatus={props.updateStatus} />
+						cancelSetStatus={props.cancelSetStatus} updateStatus={props.updateStatus}
+						authId={props.authId} clickedUserId={props.clickedUserId} />
 				</div>
 				<div className={s.jobAndContacts}>
 					<div className={s.job}>

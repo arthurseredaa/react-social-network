@@ -6,7 +6,6 @@ import { TextField } from '@material-ui/core';
 
 
 const Dialogs = (props) => {
-	debugger
 	let messageInputRef = React.createRef();
 
 	const onMessageChange = (e) => {

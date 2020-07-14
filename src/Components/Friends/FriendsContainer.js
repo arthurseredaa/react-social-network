@@ -1,11 +1,13 @@
-import { Friends } from './Friends';
+import { Friends } from "./Friends";
 import { connect } from "react-redux";
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import { compose } from 'redux';
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => ({
-	friends: state.friendsPage.friends,
-})
+  friends: state.friendsPage.friends,
+});
 
-export const FriendsContainer = compose(withAuthRedirect, connect(mapStateToProps))(Friends)
-
+export const FriendsContainer = compose(
+  withAuthRedirect,
+  connect(mapStateToProps)
+)(Friends);

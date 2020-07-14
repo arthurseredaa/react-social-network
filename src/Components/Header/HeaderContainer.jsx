@@ -1,23 +1,26 @@
-import React from "react"
+import React from "react";
 import { Header } from "./Header";
 import { connect } from "react-redux";
 import { setAuthData } from "../../Redux/Actions/authorization";
-import { userAuthorization } from "../../Redux/Reducers/authorization";
+import {
+  userAuthorization,
+  userLogout,
+} from "../../Redux/Reducers/authorization";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { withAuthRedirect } from "./../../hoc/withAuthRedirect";
 
-export class HeaderAPIContainer extends React.Component {
+export const HeaderAPIContainer = (props) => {
+  return <Header {...props} />;
+};
 
-	componentDidMount() {
-		this.props.userAuthorization();
-	}
+// let mapStateToProps = (state) => ({
+//   isAuth: state.auth.isAuth,
+//   login: state.auth.login,
+// });
 
-	render() {
-		return <Header {...this.props} />
-	}
-}
-
-let mapStateToProps = (state) => ({ isAuth: state.auth.isAuth, login: state.auth.login })
-
-export const HeaderContainer = connect(mapStateToProps, { setAuthData, userAuthorization })(HeaderAPIContainer);
-
-
-
+export const HeaderContainer = compose(
+  withRouter,
+  withAuthRedirect,
+  connect(null, { setAuthData, userAuthorization, userLogout })
+)(HeaderAPIContainer);

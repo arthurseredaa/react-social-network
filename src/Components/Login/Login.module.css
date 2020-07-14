@@ -1,0 +1,45 @@
+.loginPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  text-align: center;
+  flex-direction: column;
+}
+.loginPage .lds-ellipsis {
+  margin-top: 3em;
+}
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 7em;
+  width: 20em;
+}
+.loginInput {
+  border: none;
+  height: 4em;
+  margin: 10px 0px;
+  padding: 0px 10px;
+}
+.loginPageTitle {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.loginPageTitle span {
+  color: var(--accent-color);
+  cursor: default;
+  font-weight: 700;
+}
+.loginPageTitle span:hover {
+  color: var(--accent-color);
+}
+.warningText {
+  color: red;
+  font-size: 15px;
+  margin: 0;
+}

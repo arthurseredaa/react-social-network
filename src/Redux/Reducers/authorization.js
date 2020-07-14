@@ -1,34 +1,82 @@
-import { SET_AUTH_USER_DATA } from "../Types/authorization";
+import * as types from "../Types/authorization";
 import { authAPI } from "../../api/api";
-import { setAuthData } from "../Actions/authorization";
+import {
+  setAuthData,
+  setLoginData,
+  setLoading,
+  setLogoutData,
+} from "../Actions/authorization";
 
 let initialState = {
-	id: null,
-	login: null,
-	email: null,
-	isAuth: false,
-	isLodaing: false
-}
+  id: null,
+  login: null,
+  email: null,
+  isAuth: false,
+  isLoading: false,
+};
 
 export const authReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case SET_AUTH_USER_DATA:
-			return {
-				...state,
-				...action.data,
-				isAuth: true
-			}
-		default:
-			return state;
-	}
-}
+  switch (action.type) {
+    case types.SET_AUTH_USER_DATA:
+      return {
+        ...state,
+        ...action.data,
+        isAuth: true,
+      };
+    case types.SET_LOGIN_DATA:
+      return {
+        ...state,
+        email: action.data.email,
+        id: action.userId,
+        isAuth: true,
+      };
+    case types.SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      };
+    case types.SET_LOGOUT_DATA:
+      debugger;
+      return {
+        ...state,
+        id: null,
+        login: null,
+        email: null,
+        isAuth: false,
+      };
+    default:
+      return state;
+  }
+};
 
 export const userAuthorization = () => (dispatch) => {
-	authAPI.me()
-		.then(data => {
-			if (data.resultCode === 0) {
-				let { id, login, email } = data.data;
-				dispatch(setAuthData(id, email, login))
-			}
-		})
-}
+  authAPI.me().then((data) => {
+    if (data.resultCode === 0) {
+      let { id, login, email } = data.data;
+      dispatch(setAuthData(id, email, login));
+    }
+  });
+};
+
+export const userLogin = (data) => (dispatch) => {
+  dispatch(setLoading(true));
+  console.log(data);
+  authAPI.login(data).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(userAuthorization());
+      dispatch(setLoading(false));
+    }
+  });
+};
+
+export const userLogout = () => (dispatch) => {
+  dispatch(setLoading(true));
+  authAPI.logout().then((response) => {
+    console.log(response);
+    if (response.data.resultCode === 0) {
+      setLoading(false);
+      dispatch(userAuthorization());
+      dispatch(setLogoutData());
+    }
+  });
+};

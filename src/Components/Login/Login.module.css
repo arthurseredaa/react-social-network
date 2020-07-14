@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 .loginPage .lds-ellipsis {
-  margin-top: 3em;
+  margin: 0 auto;
 }
 .loginForm {
   display: flex;
@@ -26,14 +26,14 @@
 }
 .loginPageTitle {
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 300;
   margin-bottom: 20px;
   color: #fff;
 }
 .loginPageTitle span {
   color: var(--accent-color);
   cursor: default;
-  font-weight: 700;
+  font-weight: 500;
 }
 .loginPageTitle span:hover {
   color: var(--accent-color);
@@ -42,4 +42,28 @@
   color: red;
   font-size: 15px;
   margin: 0;
+}
+.loginFormButton {
+  height: 3em;
+  cursor: pointer;
+  border: none;
+  transition: 0.1s all linear;
+  width: calc(19em - 3px);
+  font-size: 17px;
+  background-color: var(--accent-color);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginFormButton p {
+  font-size: 20px;
+}
+.loginFormButton:hover {
+  background-color: #633dca;
+}
+.rememberMeLabel {
+  color: #fff;
+  text-align: left;
+  margin: 0.3em 0 0.8em;
 }

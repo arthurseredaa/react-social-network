@@ -26,7 +26,7 @@ export const Header = ({ location, userLogout }) => {
         )}
       </div>
       {isAuth && (
-        <div onClick={() => userLogout()}>
+        <div onClick={() => userLogout()} className={s.logoutButton}>
           <NavLink to="/login">Log out</NavLink>
         </div>
       )}

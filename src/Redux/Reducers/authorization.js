@@ -2,9 +2,9 @@ import * as types from "../Types/authorization";
 import { authAPI } from "../../api/api";
 import {
   setAuthData,
-  setLoginData,
   setLoading,
   setLogoutData,
+  setErrorText,
 } from "../Actions/authorization";
 
 let initialState = {
@@ -13,6 +13,7 @@ let initialState = {
   email: null,
   isAuth: false,
   isLoading: false,
+  errorText: null,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -36,13 +37,15 @@ export const authReducer = (state = initialState, action) => {
         isLoading: action.isLoading,
       };
     case types.SET_LOGOUT_DATA:
-      debugger;
       return {
         ...state,
-        id: null,
-        login: null,
-        email: null,
+        ...action.payload,
         isAuth: false,
+      };
+    case types.SET_ERROR_TEXT:
+      return {
+        ...state,
+        errorText: action.errorText,
       };
     default:
       return state;
@@ -60,10 +63,13 @@ export const userAuthorization = () => (dispatch) => {
 
 export const userLogin = (data) => (dispatch) => {
   dispatch(setLoading(true));
-  console.log(data);
   authAPI.login(data).then((response) => {
+    console.log(response);
     if (response.data.resultCode === 0) {
       dispatch(userAuthorization());
+      dispatch(setLoading(false));
+    } else if (response.data.resultCode === 1) {
+      dispatch(setErrorText(response.data.messages[0]));
       dispatch(setLoading(false));
     }
   });
@@ -72,10 +78,8 @@ export const userLogin = (data) => (dispatch) => {
 export const userLogout = () => (dispatch) => {
   dispatch(setLoading(true));
   authAPI.logout().then((response) => {
-    console.log(response);
     if (response.data.resultCode === 0) {
-      setLoading(false);
-      dispatch(userAuthorization());
+      dispatch(setLoading(false));
       dispatch(setLogoutData());
     }
   });

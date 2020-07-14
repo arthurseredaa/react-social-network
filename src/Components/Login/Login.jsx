@@ -3,14 +3,18 @@ import s from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
 import { Preloader } from "./../Preloader/Preloader";
+import { useSelector } from "react-redux";
 
-export const Login = ({ userLogin, userId, isLoading, userAuthorization }) => {
+export const Login = ({ userLogin }) => {
   let { register, handleSubmit, errors } = useForm();
+  let userId = useSelector((state) => state.auth.id),
+    isLoading = useSelector((state) => state.auth.isLoading),
+    isAuth = useSelector((state) => state.auth.isAuth),
+    errorText = useSelector((state) => state.auth.errorText);
 
   const onSubmit = (data) => userLogin(data);
 
-  if (userId) {
-    userAuthorization();
+  if (isAuth) {
     return <Redirect to={`/profile/${userId}`} />;
   }
 
@@ -23,8 +27,9 @@ export const Login = ({ userLogin, userId, isLoading, userAuthorization }) => {
       <h1 className={s.loginPageTitle}>
         Sign <span>in</span>
       </h1>
+      {errorText && <p className={s.warningText}>{errorText}</p>}
       <form onSubmit={handleSubmit(onSubmit)} className={s.loginForm}>
-        {errors.login && (
+        {errors.email && (
           <p className={s.warningText}>This field is required</p>
         )}
         <input
@@ -45,11 +50,18 @@ export const Login = ({ userLogin, userId, isLoading, userAuthorization }) => {
           placeholder="Password"
           ref={register({ required: true })}
         />
-        <label>
-          <input type="checkbox" name="rememberMe" ref={register()} />
+        <label className={s.rememberMeLabel}>
+          <input
+            type="checkbox"
+            name="rememberMe"
+            className={s.rememberMe}
+            ref={register()}
+          />
           <span>Remember me</span>
         </label>
-        <button>Submit</button>
+        <button className={s.loginFormButton}>
+          <p>Submit</p>
+        </button>
       </form>
     </div>
   );

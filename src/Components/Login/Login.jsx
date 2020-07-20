@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
 import { Preloader } from "./../Preloader/Preloader";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-export const Login = ({ userLogin }) => {
+export const Login = ({ userLogin, userAuthorization }) => {
+  useEffect(() => {
+    userAuthorization();
+  });
   let { register, handleSubmit, errors } = useForm();
   let userId = useSelector((state) => state.auth.id),
     isLoading = useSelector((state) => state.auth.isLoading),
@@ -63,6 +67,13 @@ export const Login = ({ userLogin }) => {
           <p>Submit</p>
         </button>
       </form>
+      {/* <div className={s.button}>
+        <span className={s.button__mask}></span>
+        <span className={s.button__text}>Submit</span>
+        <span className={`${s.button__text} ${s.button__text__bis}`}>
+          Submit
+        </span>
+      </div> */}
     </div>
   );
 };

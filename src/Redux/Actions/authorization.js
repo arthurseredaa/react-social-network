@@ -12,6 +12,12 @@ export const setAuthData = (id, email, login) => ({
   setLoading = (isLoading) => ({ type: types.SET_LOADING, isLoading }),
   setLogoutData = () => ({
     type: types.SET_LOGOUT_DATA,
-    payload: { id: null, email: null, login: null, password: null },
+    payload: {
+      id: null,
+      email: null,
+      login: null,
+      password: null,
+      isAuth: false,
+    },
   }),
   setErrorText = (errorText) => ({ type: types.SET_ERROR_TEXT, errorText });

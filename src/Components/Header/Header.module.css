@@ -28,7 +28,7 @@
 }
 .headerTitle span {
   text-decoration: none;
-  color: #00e676;
+  color: var(--accent-color);
   cursor: default;
 }
 .loginData {

@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "./Header";
 import { connect } from "react-redux";
-import { setAuthData } from "../../Redux/Actions/authorization";
 import { userLogout } from "../../Redux/Reducers/authorization";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -14,5 +13,5 @@ export const HeaderAPIContainer = (props) => {
 export const HeaderContainer = compose(
   withRouter,
   withAuthRedirect,
-  connect(null, { setAuthData, userLogout })
+  connect(null, { userLogout })
 )(HeaderAPIContainer);

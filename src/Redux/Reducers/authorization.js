@@ -40,7 +40,6 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        isAuth: false,
       };
     case types.SET_ERROR_TEXT:
       return {
@@ -53,18 +52,24 @@ export const authReducer = (state = initialState, action) => {
 };
 
 export const userAuthorization = () => (dispatch) => {
-  authAPI.me().then((data) => {
-    if (data.resultCode === 0) {
-      let { id, login, email } = data.data;
-      dispatch(setAuthData(id, email, login));
-    }
-  });
+  authAPI
+    .me()
+    .then((data) => {
+      if (data.resultCode === 0) {
+        let { id, login, email } = data.data;
+        dispatch(setAuthData(id, email, login));
+      } else {
+        dispatch(setLogoutData());
+      }
+    })
+    .catch((e) => {
+      console.log("Auth error" + e);
+    });
 };
 
 export const userLogin = (data) => (dispatch) => {
   dispatch(setLoading(true));
   authAPI.login(data).then((response) => {
-    console.log(response);
     if (response.data.resultCode === 0) {
       dispatch(userAuthorization());
       dispatch(setLoading(false));

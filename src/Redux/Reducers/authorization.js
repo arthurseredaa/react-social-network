@@ -63,7 +63,7 @@ export const userAuthorization = () => (dispatch) => {
       }
     })
     .catch((e) => {
-      console.log("Auth error" + e);
+      console.log(e);
     });
 };
 

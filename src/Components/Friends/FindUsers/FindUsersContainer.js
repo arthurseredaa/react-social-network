@@ -1,14 +1,9 @@
 import { connect } from "react-redux";
 import {
-  follow,
-  unfollow,
   setCurrentPage,
   followProcessing,
 } from "../../../Redux/Actions/findUser";
 import React, { useEffect } from "react";
-import { FindUsersHeader } from "./FindUsersHeader/FindUsersHeader";
-import { Pagination } from "./Pagination/Pagination";
-import { Preloader } from "../../Preloader/Preloader";
 import {
   getUsers,
   followUser,
@@ -23,51 +18,52 @@ import {
   getIsLoadingSelector,
   getIsFollowingProcessingSelector,
 } from "../../../Redux/Selectors/findUsersSelectors";
+import { FindUsers } from "./FindUsers";
 
-export const FindUsersAPIContainer = ({
-  users,
-  currentPage,
-  pageSize,
-  totalUsersCount,
-  isFollowingProcessing,
-  isLoading,
-  followUser,
-  unfollowUser,
-  getUsers,
-  setCurrentPage,
-}) => {
+// {
+//   users,
+//   currentPage,
+//   pageSize,
+//   totalUsersCount,
+//   isFollowingProcessing,
+//   isLoading,
+//   followUser,
+//   unfollowUser,
+//   getUsers,
+//   setCurrentPage,
+// }props.
+export const FindUsersAPIContainer = React.memo((props) => {
   useEffect(() => {
-    getUsers(currentPage, pageSize);
-  }, [currentPage, pageSize]);
+    props.getUsers(props.currentPage, props.pageSize);
+  }, [props.currentPage, props.pageSize]);
 
   const onPageChanged = (pageNum) => {
-    setCurrentPage(pageNum);
-    getUsers(pageNum, pageSize);
+    props.setCurrentPage(pageNum);
+    props.getUsers(pageNum, props.pageSize);
   };
 
-  let usersPerPage = users.map((user) => (
+  let usersPerPage = props.users.map((user) => (
     <FindUserItem
       key={user.id}
       user={user}
-      follow={followUser}
-      unfollow={unfollowUser}
-      isFollowingProcessing={isFollowingProcessing}
+      follow={props.followUser}
+      unfollow={props.unfollowUser}
+      isFollowingProcessing={props.isFollowingProcessing}
     />
   ));
-
+  window.params = [];
+  window.params.push(props);
   return (
-    <>
-      {/* <FindUsersHeader /> */}
-      {isLoading ? <Preloader /> : <div>{usersPerPage}</div>}
-      <Pagination
-        totalUsersCount={totalUsersCount}
-        pageSize={pageSize}
-        currentPage={currentPage}
-        onPageChanged={onPageChanged}
-      />
-    </>
+    <FindUsers
+      totalUsersCount={props.totalUsersCount}
+      pageSize={props.pageSize}
+      currentPage={props.currentPage}
+      onPageChanged={onPageChanged}
+      usersPerPage={usersPerPage}
+      isLoading={props.isLoading}
+    />
   );
-};
+});
 
 let mapStateToProps = (state) => ({
   users: getUsersSelector(state),

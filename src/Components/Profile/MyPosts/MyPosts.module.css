@@ -1,22 +1,25 @@
 .createPost {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
-.createPost textarea {
-    width: 750px;
-    resize: none;
-    outline: none;
+.createPost input {
+  width: 750px;
+  resize: none;
+  outline: none;
+}
+.createPost button {
+  margin-top: 20px;
 }
 
 .postsWrapper {
-    padding: 0px 50px;
-    /*border: 2px solid white;*/
+  padding: 0px 50px;
 }
 .posts {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }

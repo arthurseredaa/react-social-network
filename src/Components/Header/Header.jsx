@@ -1,14 +1,21 @@
 import React from "react";
 import s from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, Redirect } from "react-router-dom";
 import { OnlineDot } from "./OnlineDot/OnlineDot.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userLogout } from "../../Redux/Reducers/authorization";
 
-export const Header = ({ location, userLogout }) => {
+export const Header = React.memo(() => {
   const isAuth = useSelector((state) => state.auth.isAuth),
-    login = useSelector((state) => state.auth.login);
+    login = useSelector((state) => state.auth.login),
+    location = useLocation(),
+    dispatch = useDispatch();
 
   if (location === "/login") return null;
+
+  if (!isAuth) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <header className={s.header}>
@@ -26,10 +33,10 @@ export const Header = ({ location, userLogout }) => {
         )}
       </div>
       {isAuth && (
-        <div onClick={() => userLogout()} className={s.logoutButton}>
+        <div onClick={() => dispatch(userLogout())} className={s.logoutButton}>
           <NavLink to="/login">Log out</NavLink>
         </div>
       )}
     </header>
   );
-};
+});

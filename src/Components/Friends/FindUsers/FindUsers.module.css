@@ -1,28 +1,31 @@
 .findUsersHeader {
-    /*border: 1px solid #00e676;*/
-    padding: 10px;
-    margin: 20px 0px 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 10px;
+  margin: 20px 0px 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.search {
+  display: flex;
+  width: 80%;
 }
 .findUsersHeader input {
-    width: 60%;
-    border: none;
-    border-radius: 20px;
-    height: 30px;
-    outline: none;
-    padding: 4px 15px;
-    font-size: 15px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  height: 30px;
+  outline: none;
+  padding: 4px 15px;
+  font-size: 15px;
 }
 .findUsersHeader button {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .selectedPageCounter {
-    color: red;
-    font-weight: 700;
+  color: red;
+  font-weight: 700;
 }
 span:hover {
-    cursor: pointer;
-    color: orange;
+  cursor: pointer;
+  color: orange;
 }

@@ -74,6 +74,8 @@
   -ms-user-select: none;
   user-select: none;
   display: inline-block;
+  background-color: transparent;
+  outline: none;
   border: 0.2em solid;
   position: relative;
   cursor: pointer;
@@ -114,21 +116,21 @@
   background: var(--accent-color);
   -webkit-transform: translateX(-100%) rotate(45deg);
   transform: translateX(-100%) rotate(45deg);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .button:hover .button__text {
-  -webkit-animation: fx-text 0.3s ease-out;
-  animation: fx-text 0.3s ease-out;
+  -webkit-animation: fx-text 0.5s ease-out;
+  animation: fx-text 0.5s ease-out;
 }
 .button:hover .button__text--bis {
-  -webkit-animation: fx-text-bis 0.3s ease-out;
-  animation: fx-text-bis 0.3s ease-out;
+  -webkit-animation: fx-text-bis 0.5s ease-out;
+  animation: fx-text-bis 0.5s ease-out;
 }
 .button:hover .button__mask {
-  -webkit-animation: fx-mask 0.3s ease-out;
-  animation: fx-mask 0.3s ease-out;
+  -webkit-animation: fx-mask 0.5s ease-out;
+  animation: fx-mask 0.5s ease-out;
 }
 
 .button:active {

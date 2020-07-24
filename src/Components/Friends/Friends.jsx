@@ -6,7 +6,7 @@ import { MyFriends } from "./MyFriends/MyFriends";
 import { FindUsersContainer } from "./FindUsers/FindUsersContainer";
 import { useSelector } from "react-redux";
 
-export const Friends = () => {
+export const Friends = React.memo(() => {
   let friends = useSelector((state) => state.friendsPage.friends);
 
   return (
@@ -24,4 +24,4 @@ export const Friends = () => {
       </div>
     </div>
   );
-};
+});

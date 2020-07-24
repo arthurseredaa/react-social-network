@@ -4,7 +4,7 @@ import { Avatar } from "../../Avatar/Avatar";
 import basicAvatar from "../../../assets/images/basic-avatar.png";
 import Button from "@material-ui/core/Button";
 
-export const FindedUser = (props) => {
+export const FindedUser = React.memo((props) => {
   return (
     <div key={nanoid(5)}>
       <div className={"avatarWrapper"}>
@@ -34,5 +34,4 @@ export const FindedUser = (props) => {
         <p>user.address.street</p>
       </div>
     </div>
-  );
-};
+  )}

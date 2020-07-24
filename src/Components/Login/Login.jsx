@@ -3,20 +3,27 @@ import s from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
 import { Preloader } from "./../Preloader/Preloader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import {
+  userLogin,
+  userAuthorization,
+} from "../../Redux/Reducers/authorization";
 
-export const Login = ({ userLogin, userAuthorization }) => {
+export const Login = React.memo(() => {
   useEffect(() => {
-    userAuthorization();
+    dispatch(userAuthorization());
   });
-  let { register, handleSubmit, errors } = useForm();
+
+  let { register, handleSubmit, errors } = useForm(),
+    dispatch = useDispatch();
+
   let userId = useSelector((state) => state.auth.id),
     isLoading = useSelector((state) => state.auth.isLoading),
     isAuth = useSelector((state) => state.auth.isAuth),
     errorText = useSelector((state) => state.auth.errorText);
 
-  const onSubmit = (data) => userLogin(data);
+  const onSubmit = (data) => dispatch(userLogin(data));
 
   if (isAuth) {
     return <Redirect to={`/profile/${userId}`} />;
@@ -63,17 +70,14 @@ export const Login = ({ userLogin, userAuthorization }) => {
           />
           <span>Remember me</span>
         </label>
-        <button className={s.loginFormButton}>
-          <p>Submit</p>
+        <button className={s.button}>
+          <span className={s.button__mask}></span>
+          <span className={s.button__text}>Submit</span>
+          <span className={`${s.button__text} ${s.button__text__bis}`}>
+            Submit
+          </span>
         </button>
       </form>
-      {/* <div className={s.button}>
-        <span className={s.button__mask}></span>
-        <span className={s.button__text}>Submit</span>
-        <span className={`${s.button__text} ${s.button__text__bis}`}>
-          Submit
-        </span>
-      </div> */}
     </div>
   );
-};
+});

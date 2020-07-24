@@ -51,41 +51,38 @@ export const authReducer = (state = initialState, action) => {
   }
 };
 
-export const userAuthorization = () => (dispatch) => {
-  authAPI
-    .me()
-    .then((data) => {
-      if (data.resultCode === 0) {
-        let { id, login, email } = data.data;
-        dispatch(setAuthData(id, email, login));
-      } else {
-        dispatch(setLogoutData());
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+export const userAuthorization = () => async (dispatch) => {
+  let response = await authAPI.me();
+
+  if (response.resultCode === 0) {
+    let { id, login, email } = response.data;
+    dispatch(setAuthData(id, email, login));
+  } else {
+    dispatch(setLogoutData());
+  }
 };
 
-export const userLogin = (data) => (dispatch) => {
+export const userLogin = (data) => async (dispatch) => {
   dispatch(setLoading(true));
-  authAPI.login(data).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(userAuthorization());
-      dispatch(setLoading(false));
-    } else if (response.data.resultCode === 1) {
-      dispatch(setErrorText(response.data.messages[0]));
-      dispatch(setLoading(false));
-    }
-  });
+
+  let response = await authAPI.login(data);
+
+  if (response.data.resultCode === 0) {
+    dispatch(userAuthorization());
+    dispatch(setLoading(false));
+  } else {
+    dispatch(setErrorText(response.data.messages[0]));
+    dispatch(setLoading(false));
+  }
 };
 
-export const userLogout = () => (dispatch) => {
+export const userLogout = () => async (dispatch) => {
   dispatch(setLoading(true));
-  authAPI.logout().then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setLoading(false));
-      dispatch(setLogoutData());
-    }
-  });
+
+  let response = await authAPI.logout();
+
+  if (response.data.resultCode === 0) {
+    dispatch(setLoading(false));
+    dispatch(setLogoutData());
+  }
 };

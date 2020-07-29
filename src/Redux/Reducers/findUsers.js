@@ -1,5 +1,6 @@
 import * as types from "../Types/findUser";
 import { usersAPI } from "../../api/api";
+import { mapArrayAndChangeProperty } from "./../../utils/reducer-helper";
 import {
   setLoading,
   setUsers,
@@ -23,16 +24,16 @@ export const findUsers = (state = initialState, action) => {
     case types.FOLLOW:
       return {
         ...state,
-        users: state.users.map((user) =>
-          user.id === action.userId ? { ...user, followed: true } : user
-        ),
+        users: mapArrayAndChangeProperty(state.users, "id", action.userId, {
+          followed: true,
+        }),
       };
     case types.UNFOLLOW:
       return {
         ...state,
-        users: state.users.map((user) =>
-          user.id === action.userId ? { ...user, followed: false } : user
-        ),
+        users: mapArrayAndChangeProperty(state.users, "id", action.userId, {
+          followed: false,
+        }),
       };
     case types.SET_USERS:
       return {
@@ -75,20 +76,22 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
   dispatch(setTotalUsersCount(response.totalCount));
 };
 
-export const followUser = (userId) => async (dispatch) => {
+const followOrUnfollowFunction = async (
+  dispatch,
+  userId,
+  actionCreator,
+  apiMethod
+) => {
   dispatch(followProcessing(true, userId));
-  let response = await usersAPI.followUser(userId);
+  let response = await apiMethod(userId);
   if (response.resultCode === 0) {
-    dispatch(follow(userId));
+    dispatch(actionCreator(userId));
     dispatch(followProcessing(false, userId));
   }
 };
 
-export const unfollowUser = (userId) => async (dispatch) => {
-  dispatch(followProcessing(true, userId));
-  let response = await usersAPI.unfollowUser(userId);
-  if (response.resultCode === 0) {
-    dispatch(unfollow(userId));
-    dispatch(followProcessing(false, userId));
-  }
-};
+export const followUser = (userId) => (dispatch) =>
+  followOrUnfollowFunction(dispatch, userId, follow, usersAPI.followUser);
+
+export const unfollowUser = (userId) => (dispatch) =>
+  followOrUnfollowFunction(dispatch, userId, unfollow, usersAPI.unfollowUser);

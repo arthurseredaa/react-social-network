@@ -21,11 +21,3 @@
 .findUsersHeader button {
   margin-left: 20px;
 }
-.selectedPageCounter {
-  color: red;
-  font-weight: 700;
-}
-span:hover {
-  cursor: pointer;
-  color: orange;
-}

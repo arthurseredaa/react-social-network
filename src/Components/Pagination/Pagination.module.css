@@ -1,0 +1,8 @@
+.paginationButton:hover {
+  color: #00e676;
+  cursor: pointer;
+}
+.selectedPageCounter {
+  color: red;
+  font-weight: 700;
+}

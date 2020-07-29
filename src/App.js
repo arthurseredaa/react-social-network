@@ -13,7 +13,7 @@ import { Login } from "./Components/Login/Login";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <>
       <Route path="/login" component={Login} />
       <div className="app-wrapper">
         <Header />
@@ -27,6 +27,6 @@ export const App = () => {
           <Route path="/settings" component={Settings} />
         </div>
       </div>
-    </BrowserRouter>
+    </>
   );
 };

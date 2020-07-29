@@ -9,7 +9,6 @@ import {
   followUser,
   unfollowUser,
 } from "../../../Redux/Reducers/findUsers";
-import { FindUserItem } from "./FindUserItem/FindUserItem";
 import {
   getUsersSelector,
   getPageSizeSelector,
@@ -19,19 +18,8 @@ import {
   getIsFollowingProcessingSelector,
 } from "../../../Redux/Selectors/findUsersSelectors";
 import { FindUsers } from "./FindUsers";
+import { User } from "./User/User";
 
-// {
-//   users,
-//   currentPage,
-//   pageSize,
-//   totalUsersCount,
-//   isFollowingProcessing,
-//   isLoading,
-//   followUser,
-//   unfollowUser,
-//   getUsers,
-//   setCurrentPage,
-// }props.
 export const FindUsersAPIContainer = React.memo((props) => {
   useEffect(() => {
     props.getUsers(props.currentPage, props.pageSize);
@@ -43,16 +31,16 @@ export const FindUsersAPIContainer = React.memo((props) => {
   };
 
   let usersPerPage = props.users.map((user) => (
-    <FindUserItem
+    <User
       key={user.id}
       user={user}
       follow={props.followUser}
       unfollow={props.unfollowUser}
       isFollowingProcessing={props.isFollowingProcessing}
+      id={user.id}
     />
   ));
-  window.params = [];
-  window.params.push(props);
+
   return (
     <FindUsers
       totalUsersCount={props.totalUsersCount}

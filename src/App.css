@@ -1,12 +1,13 @@
 .app-wrapper {
-	display: grid;
-	grid-template-rows: 60px 1fr;
-	grid-template-columns: 2fr 10fr;
-	grid-template-areas: "header header" "nav cont";
-	color: #000;
-	height: calc(100vh - 40px);
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: "header header" "nav cont";
+  color: #000;
+  height: calc(100vh - 40px);
+  width: 100vw;
 }
 .appWrapperContent {
-	grid-area: cont;
-	padding-bottom: 50px;
+  grid-area: cont;
+  padding-bottom: 50px;
 }

@@ -1,6 +1,7 @@
 import * as types from "../Types/findUser";
 import { usersAPI } from "../../api/api";
-import { mapArrayAndChangeProperty } from "./../../utils/reducer-helper";
+import { mapArrayAndChangeProperty } from "../../utils/FindUsersReducer/mappingArrayAndChangeProps";
+import { changeFollowProcessing } from "./../../utils/FindUsersReducer/changeFollowProcessing";
 import {
   setLoading,
   setUsers,
@@ -58,9 +59,11 @@ export const findUsers = (state = initialState, action) => {
     case types.FOLLOWING_PROCESSING:
       return {
         ...state,
-        isFollowingProcessing: action.isLoading
-          ? [...state.isFollowingProcessing, action.userId]
-          : [state.isFollowingProcessing.filter((id) => id !== action.userId)],
+        isFollowingProcessing: changeFollowProcessing(
+          action.isLoading,
+          state.isFollowingProcessing,
+          action.userId
+        ),
       };
     default:
       return state;

@@ -15,8 +15,9 @@ import { compose } from "redux";
 import { setStatus, updateStatus } from "../../Redux/Reducers/profile";
 
 const ProfileAPIContainer = (props) => {
+  let userId = props.match.params.userId;
+
   useEffect(() => {
-    let userId = props.match.params.userId;
     if (!userId) {
       userId = props.authId;
     }
@@ -25,8 +26,9 @@ const ProfileAPIContainer = (props) => {
   }, [props.authId]);
 
   useEffect(() => {
-    props.setProfile(props.match.params.userId);
-  }, [props.match.params.userId]);
+    props.setProfile(userId);
+    props.setStatus(userId);
+  }, [props, userId]);
 
   return props.isLoading ? (
     <Preloader />

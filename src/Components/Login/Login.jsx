@@ -10,7 +10,7 @@ import {
   userAuthorization,
 } from "../../Redux/Reducers/authorization";
 
-export const Login = React.memo(() => {
+export const Login = () => {
   useEffect(() => {
     dispatch(userAuthorization());
   });
@@ -80,4 +80,4 @@ export const Login = React.memo(() => {
       </form>
     </div>
   );
-});
+};

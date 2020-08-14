@@ -21,3 +21,7 @@
 .findUsersHeader button {
   margin-left: 20px;
 }
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+}

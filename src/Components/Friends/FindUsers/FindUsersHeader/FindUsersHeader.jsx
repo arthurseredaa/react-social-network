@@ -11,7 +11,7 @@ export const FindUsersHeader = (props) => {
           Search
         </Button>
       </div>
-      <div>Total users count: {props.totalUsersCount}</div>
+      <div>Total count of users: {props.totalUsersCount}</div>
     </div>
   );
 };

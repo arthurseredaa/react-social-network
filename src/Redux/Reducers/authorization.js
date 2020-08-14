@@ -53,11 +53,14 @@ export const authReducer = (state = initialState, action) => {
 
 export const userAuthorization = () => async (dispatch) => {
   let response = await authAPI.me();
+  // dispatch(setLoading(true));
   if (response.resultCode === 0) {
     let { id, login, email } = response.data;
     dispatch(setAuthData(id, email, login));
+    // dispatch(setLoading(false));
   } else {
-    dispatch(setLogoutData());
+    // dispatch(setLogoutData());
+    dispatch(setLoading(false));
   }
 };
 

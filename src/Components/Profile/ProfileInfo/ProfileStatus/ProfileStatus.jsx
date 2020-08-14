@@ -19,8 +19,8 @@ export const ProfileStatus = ({
   let statusInputRef = React.createRef();
 
   const onStatusInputChange = () =>
-    editStatusText(statusInputRef.current.value);
-  const onAddStatus = () => setStatusText();
+      editStatusText(statusInputRef.current.value),
+    onAddStatus = () => setStatusText();
 
   return (
     <div className={s.statusWrapper}>
@@ -41,6 +41,7 @@ export const ProfileStatus = ({
           {isEdit ? (
             <>
               <Button
+                className={s.statusButton}
                 variant="contained"
                 color="primary"
                 size="small"
@@ -53,6 +54,7 @@ export const ProfileStatus = ({
                 Done
               </Button>
               <Button
+                className={s.statusButton}
                 variant="contained"
                 color="secondary"
                 size="small"
